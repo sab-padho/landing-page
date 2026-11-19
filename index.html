@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#211f35">
+  <meta name="description" content="SabPadho is getting ready to help you prepare smarter with focused practice, mock tests and revision.">
+  <title>SabPadho — Coming Soon</title>
+  <style>
+    :root {
+      --ink: #242238;
+      --muted: #777487;
+      --purple: #654887;
+      --purple-dark: #50366f;
+      --lavender: #eee7f6;
+      --lavender-2: #f7f3fb;
+      --paper: #fbfaff;
+      --line: #e7e2ed;
+      --navy: #211f35;
+      --gold: #d6a34a;
+      --green: #438365;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 82% 14%, rgba(222,208,239,.55), transparent 27rem),
+        linear-gradient(135deg, #fbfaff 0%, #f7f5fa 55%, #f0ebf6 100%);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      min-height: 100vh;
+    }
+    a { color: inherit; text-decoration: none; }
+    .page { width: min(1160px, calc(100% - 48px)); margin: auto; }
+    header {
+      height: 82px; display: flex; align-items: center; justify-content: space-between;
+      border-bottom: 1px solid rgba(101,72,135,.14);
+    }
+    .brand { display: inline-flex; align-items: center; gap: 11px; font-weight: 800; letter-spacing: -.5px; font-size: 21px; }
+    .brand-mark { width: 34px; height: 34px; display: grid; place-items: center; }
+    .brand-mark svg { width: 34px; height: 34px; }
+    .top-note { color: var(--muted); font-size: 11px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; }
+    main { padding: 76px 0 54px; }
+    .hero {
+      display: grid; grid-template-columns: 1.03fr .97fr; align-items: center; gap: 58px;
+      min-height: 540px;
+    }
+    .eyebrow { display: flex; align-items: center; gap: 10px; color: var(--purple); font-size: 11px; font-weight: 850; letter-spacing: 2px; text-transform: uppercase; }
+    .eyebrow:before { content: ""; width: 24px; height: 2px; background: var(--gold); }
+    h1 { font-size: clamp(48px, 6vw, 76px); line-height: .99; letter-spacing: -4px; margin: 23px 0 22px; max-width: 620px; }
+    h1 span { color: var(--purple); }
+    .lead { color: #686579; font-size: 17px; line-height: 1.8; max-width: 510px; margin: 0 0 30px; }
+    .actions { display: flex; align-items: center; gap: 13px; flex-wrap: wrap; }
+    .button { display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 14px 21px; border-radius: 9px; font-size: 13px; font-weight: 750; transition: .2s ease; }
+    .button-primary { color: white; background: var(--purple); box-shadow: 0 8px 18px rgba(80,54,111,.18); }
+    .button-primary:hover { background: var(--purple-dark); transform: translateY(-2px); }
+    .button-quiet { color: var(--ink); border: 1px solid var(--line); background: rgba(255,255,255,.65); }
+    .button-quiet:hover { border-color: #c9b9dc; transform: translateY(-2px); }
+    .micro { color: #898598; font-size: 11px; margin-top: 18px; }
+    .visual-wrap { position: relative; min-height: 440px; display: grid; place-items: center; }
+    .glow { position: absolute; width: 370px; height: 370px; border-radius: 50%; background: #e9def4; filter: blur(2px); }
+    .orbit { position: absolute; width: 430px; height: 430px; border: 1px solid rgba(101,72,135,.15); border-radius: 50%; }
+    .orbit:before, .orbit:after { content: ""; position: absolute; border: 1px solid rgba(101,72,135,.12); border-radius: 50%; inset: 35px; }
+    .orbit:after { inset: 72px; }
+    .mock-window {
+      position: relative; width: min(100%, 470px); background: #fff; border: 1px solid #e4ddea;
+      border-radius: 16px; padding: 17px; box-shadow: 0 28px 70px rgba(42,31,59,.14);
+      transform: rotate(1.5deg);
+    }
+    .mock-top { display: flex; align-items: center; justify-content: space-between; padding: 2px 3px 15px; border-bottom: 1px solid #eeeaf2; }
+    .mock-brand { display: flex; align-items: center; gap: 7px; font-weight: 800; font-size: 13px; }
+    .mock-brand .mini-mark { color: var(--purple); font-size: 19px; }
+    .mock-links { color: #858194; font-size: 9px; display: flex; gap: 14px; }
+    .mock-content { padding: 21px 5px 5px; }
+    .mock-label { color: var(--purple); font-size: 8px; font-weight: 850; letter-spacing: 1.6px; }
+    .mock-heading { font-size: 24px; letter-spacing: -.8px; margin: 8px 0 4px; font-weight: 800; }
+    .mock-sub { color: #8a8797; font-size: 10px; }
+    .progress-card { margin-top: 19px; padding: 16px; border-radius: 11px; background: linear-gradient(115deg, #eee6f6, #f7f2fb); }
+    .progress-top { display: flex; justify-content: space-between; align-items: center; font-size: 10px; font-weight: 750; }
+    .progress-top strong { color: var(--purple); font-size: 17px; }
+    .track { height: 6px; border-radius: 20px; background: #fff; margin-top: 12px; overflow: hidden; }
+    .track span { display: block; height: 100%; width: 68%; border-radius: inherit; background: var(--purple); }
+    .mock-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 9px; margin-top: 11px; }
+    .stat { border: 1px solid #eeeaf2; border-radius: 9px; padding: 12px 10px; }
+    .stat b { display: block; font-size: 19px; }
+    .stat small { color: #898598; font-size: 8px; }
+    .mock-bottom { margin-top: 11px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .mini-panel { border: 1px solid #eeeaf2; border-radius: 9px; padding: 12px; }
+    .mini-panel b { font-size: 10px; }
+    .subject-line { display: flex; justify-content: space-between; color: #777487; font-size: 8px; margin-top: 10px; }
+    .subject-line span:last-child { color: var(--green); font-weight: 800; }
+    .floating-tag { position: absolute; z-index: 2; padding: 12px 15px; border-radius: 11px; background: white; box-shadow: 0 12px 35px rgba(42,31,59,.12); font-size: 10px; font-weight: 750; }
+    .floating-tag strong { color: var(--green); font-size: 15px; display: block; margin-bottom: 2px; }
+    .tag-one { left: -4px; bottom: 52px; }
+    .tag-two { right: -7px; top: 58px; }
+    .features { padding: 45px 0 25px; }
+    .section-head { text-align: center; max-width: 600px; margin: 0 auto 28px; }
+    .section-head .eyebrow { justify-content: center; }
+    h2 { font-size: clamp(27px, 3vw, 36px); letter-spacing: -1.3px; margin: 12px 0 9px; }
+    .section-head p { color: var(--muted); font-size: 13px; line-height: 1.7; margin: 0; }
+    .feature-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 13px; }
+    .feature { background: rgba(255,255,255,.7); border: 1px solid var(--line); border-radius: 12px; padding: 19px; }
+    .feature-icon { width: 35px; height: 35px; display: grid; place-items: center; color: var(--purple); background: var(--lavender); border-radius: 9px; font-size: 17px; }
+    .feature h3 { font-size: 13px; margin: 14px 0 6px; }
+    .feature p { font-size: 11px; line-height: 1.65; color: var(--muted); margin: 0; }
+    .bottom-cta { margin: 46px 0 0; border-radius: 16px; padding: 28px 32px; background: var(--navy); color: white; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    .bottom-cta h2 { font-size: 23px; margin: 0 0 5px; letter-spacing: -.6px; }
+    .bottom-cta p { color: #c4c0d0; font-size: 11px; margin: 0; }
+    .bottom-cta .button { background: #fff; color: var(--navy); white-space: nowrap; }
+    footer { border-top: 1px solid rgba(101,72,135,.14); padding: 20px 0 27px; display: flex; justify-content: space-between; gap: 15px; color: #898598; font-size: 10px; }
+    footer strong { color: var(--purple); }
+    @media (max-width: 850px) {
+      .hero { grid-template-columns: 1fr; gap: 20px; padding-top: 10px; }
+      main { padding-top: 45px; }
+      .hero-copy { text-align: center; }
+      .eyebrow, .actions { justify-content: center; }
+      .lead { margin-left: auto; margin-right: auto; }
+      .visual-wrap { min-height: 420px; }
+      .feature-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 520px) {
+      .page { width: min(100% - 30px, 1160px); }
+      header { height: 68px; }
+      .brand { font-size: 18px; }
+      .top-note { font-size: 8px; letter-spacing: 1px; }
+      main { padding-top: 35px; }
+      h1 { font-size: 48px; letter-spacing: -2.8px; }
+      .lead { font-size: 14px; }
+      .visual-wrap { min-height: 350px; }
+      .glow { width: 270px; height: 270px; }
+      .orbit { width: 320px; height: 320px; }
+      .mock-window { padding: 12px; }
+      .mock-links { gap: 7px; font-size: 8px; }
+      .mock-heading { font-size: 20px; }
+      .tag-one { left: -3px; bottom: 17px; }
+      .tag-two { right: -3px; top: 15px; }
+      .feature-grid { gap: 9px; }
+      .feature { padding: 14px; }
+      .bottom-cta { padding: 23px; align-items: flex-start; flex-direction: column; }
+      footer { flex-direction: column; }
+    }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; } }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <a class="brand" href="#" aria-label="SabPadho home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 40 40" fill="none">
+            <circle cx="19" cy="20" r="13" stroke="#654887" stroke-width="2.2"/>
+            <circle cx="19" cy="20" r="7.5" stroke="#d6a34a" stroke-width="2"/>
+            <circle cx="19" cy="20" r="2.5" fill="#654887"/>
+            <path d="M20 20L33 7M27 7H33V13" stroke="#654887" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        SabPadho
+      </a>
+      <div class="top-note">Sab Padho, Sab Badho</div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-copy">
+          <div class="eyebrow">A smarter way to prepare</div>
+          <h1>Your goal.<br><span>Your Lakshya.</span></h1>
+          <p class="lead">A focused space for government exam preparation is on its way. Practise with purpose, take realistic mock tests, and turn every attempt into progress.</p>
+          <div class="actions">
+            <a class="button button-primary" href="#coming-soon">We're launching soon <span aria-hidden="true">→</span></a>
+            <a class="button button-quiet" href="#features">See what's coming</a>
+          </div>
+          <p class="micro">Chapter-wise practice · Mock tests · Smart revision · Progress tracking</p>
+        </div>
+
+        <div class="visual-wrap" aria-label="Preview of the SabPadho study dashboard">
+          <div class="glow"></div><div class="orbit"></div>
+          <div class="floating-tag tag-two"><strong>+12%</strong>Accuracy this month</div>
+          <div class="floating-tag tag-one"><strong>06 due today</strong>Keep your revision streak</div>
+          <div class="mock-window">
+            <div class="mock-top">
+              <div class="mock-brand"><span class="mini-mark">◎</span> SabPadho</div>
+              <div class="mock-links"><span>Subjects</span><span>Mock tests</span><span>Progress</span></div>
+            </div>
+            <div class="mock-content">
+              <div class="mock-label">YOUR STUDY DESK</div>
+              <div class="mock-heading">Good evening, Aspirant</div>
+              <div class="mock-sub">One focused session at a time. You're getting closer.</div>
+              <div class="progress-card">
+                <div class="progress-top"><span>Continue where you left off</span><strong>68%</strong></div>
+                <div style="font-size:12px;font-weight:750;margin-top:7px">Percentages · Question 7 of 10</div>
+                <div class="track"><span></span></div>
+              </div>
+              <div class="mock-stats">
+                <div class="stat"><b>06</b><small>Due for revision</small></div>
+                <div class="stat"><b>72%</b><small>Accuracy</small></div>
+                <div class="stat"><b>14</b><small>Saved questions</small></div>
+              </div>
+              <div class="mock-bottom">
+                <div class="mini-panel"><b>Your subjects</b><div class="subject-line"><span>Quantitative Aptitude</span><span>68%</span></div><div class="subject-line"><span>Reasoning</span><span>74%</span></div><div class="subject-line"><span>General Knowledge</span><span>81%</span></div></div>
+                <div class="mini-panel"><b>Today's revision</b><div class="subject-line"><span>Profit &amp; loss</span><span>Due</span></div><div class="subject-line"><span>Syllogisms</span><span>Due</span></div><div class="subject-line"><span>Time &amp; work</span><span>Next</span></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="features" id="features">
+        <div class="section-head">
+          <div class="eyebrow">Built around your learning</div>
+          <h2>Everything you need to move forward</h2>
+          <p>From your first chapter to a full-length mock test, keep your preparation organised and your next step clear.</p>
+        </div>
+        <div class="feature-grid">
+          <article class="feature"><div class="feature-icon">▤</div><h3>Chapter-wise practice</h3><p>Build confidence topic by topic with focused question sprints and worked explanations.</p></article>
+          <article class="feature"><div class="feature-icon">◷</div><h3>Realistic mock tests</h3><p>Practise under timed conditions and get familiar with the exam experience.</p></article>
+          <article class="feature"><div class="feature-icon">↻</div><h3>Smart revision</h3><p>Bring earlier questions back at the right time and strengthen what you've learned.</p></article>
+          <article class="feature"><div class="feature-icon">◔</div><h3>Track your progress</h3><p>See your accuracy, review your attempts and understand where to practise next.</p></article>
+        </div>
+      </section>
+
+      <section class="bottom-cta" id="coming-soon">
+        <div><h2>Big goals begin with one question.</h2><p>SabPadho is getting ready. Your next step starts soon.</p></div>
+        <a class="button" href="mailto:hello@sabpadho.com?subject=SabPadho%20launch%20updates">Get in touch <span aria-hidden="true">↗</span></a>
+      </section>
+    </main>
+
+    <footer>
+      <span>© <span id="year"></span> <strong>SabPadho</strong>. All rights reserved.</span>
+      <span>Sab Padho, Sab Badho.</span>
+    </footer>
+  </div>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
